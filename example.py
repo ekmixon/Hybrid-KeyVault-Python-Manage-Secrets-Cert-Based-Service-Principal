@@ -14,6 +14,7 @@ AZURE_SUBSCRIPTION_ID: your Azure Subscription Id
 AZURE_RESOURCE_LOCATION: your resource location
 ARM_ENDPOINT: your cloud's resource manager endpoint
 """
+
 import json
 import logging
 import os
@@ -39,7 +40,7 @@ LOCATION = os.environ['AZURE_RESOURCE_LOCATION']
 
 # Resource Group
 post_fix = random.randint(100, 500)
-GROUP_NAME = 'azure-sample-group-resources-{}'.format(post_fix)
+GROUP_NAME = f'azure-sample-group-resources-{post_fix}'
 
 # Keyvault
 KV_NAME = haikunator.haikunate()
@@ -197,15 +198,15 @@ def run_example():
     print('\nDelete Resource Group')
     delete_async_operation = resource_client.resource_groups.delete(GROUP_NAME)
     delete_async_operation.wait()
-    print("\nDeleted: {}".format(GROUP_NAME))
+    print(f"\nDeleted: {GROUP_NAME}")
 
 
 def print_item(group):
     """Print an instance."""
-    print("\tName: {}".format(group.name))
-    print("\tId: {}".format(group.id))
-    print("\tLocation: {}".format(group.location))
-    print("\tTags: {}".format(group.tags))
+    print(f"\tName: {group.name}")
+    print(f"\tId: {group.id}")
+    print(f"\tLocation: {group.location}")
+    print(f"\tTags: {group.tags}")
 
 
 if __name__ == "__main__":
